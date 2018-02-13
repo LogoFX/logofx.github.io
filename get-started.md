@@ -106,3 +106,4 @@ Delete the `MainWindow.xaml` and modify the `App.xaml` and `App.xaml.cs` files:
 
 That's it! Build the solution and run it. You should see something like this:
 
+![alt text](https://github.com/LogoFX/logofx.github.io/blob/fb-content-initial/samples-bootstrapping-final-result.png)
