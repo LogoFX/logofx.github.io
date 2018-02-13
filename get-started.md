@@ -25,19 +25,19 @@ For now install it by typing
 `Install-Package LogoFX.Client.Bootstrapping.Adapters.SimpleContainer`
 
 Then go ahead and add a file named `AppBootstrapper.cs`. This file should include the following code
-```
-   using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
-   using LogoFX.Client.Bootstrapping.Samples.WPF.ViewModels;
+```csharp
+using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
+using LogoFX.Client.Bootstrapping.Samples.WPF.ViewModels;
 
-   namespace LogoFX.Client.Bootstrapping.Samples.WPF
+namespace LogoFX.Client.Bootstrapping.Samples.WPF
+{
+   public class AppBootstrapper : BootstrapperContainerBase<ExtendedSimpleContainerAdapter>.WithRootObject<ShellViewModel>
    {
-      public class AppBootstrapper : BootstrapperContainerBase<ExtendedSimpleContainerAdapter>.WithRootObject<ShellViewModel>
+      public AppBootstrapper()
+         :base (new ExtendedSimpleContainerAdapter())
       {
-          public AppBootstrapper()
-		      :base (new ExtendedSimpleContainerAdapter())
-		  {
 			
-		  }
+      }
    }
 }
 ```
@@ -49,26 +49,26 @@ refer to this [amazing resourse](https://www.codeproject.com/Articles/100175/Mod
 Let's add the view-model and its view. Create a folder named `ViewModels` 
 at the root level of your application and add a file there named `ShellViewModel.cs`:
 
-```
-   using Caliburn.Micro;
+```csharp
+using Caliburn.Micro;
 
-   namespace LogoFX.Client.Bootstrapping.Samples.WPF.ViewModels
+namespace LogoFX.Client.Bootstrapping.Samples.WPF.ViewModels
+{
+   public class ShellViewModel : Screen
    {
-      public class ShellViewModel : Screen
+      protected override void OnInitialize()
       {
-         protected override void OnInitialize()
-         {
-             base.OnInitialize();
-             DisplayName = "Samples.Bootstrapping";
-         }
-     }
+         base.OnInitialize();
+         DisplayName = "Samples.Bootstrapping";
+      }
    }
+}
 ```
 
 The view is still missing so we should add it as well. Create a folder named `Views`
 at the root level of your application and add a file there named `ShellView.xaml` (add it via *Create User Control* option)
 Delete the code-behind portion of this file and the following markup to the file itself:
-```
+```xaml
 <UserControl x:Class="LogoFX.Client.Bootstrapping.Samples.WPF.Views.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -84,24 +84,24 @@ Delete the code-behind portion of this file and the following markup to the file
 
 The only missing part is the link between the app's entry point and the bootstrapper:
 Delete the `MainWindow.xaml` and modify the `App.xaml` and `App.xaml.cs` files:
-```
-   <Application x:Class="LogoFX.Client.Bootstrapping.Samples.WPF.App"
+```xaml
+<Application x:Class="LogoFX.Client.Bootstrapping.Samples.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
 ```
    
-```
-   namespace LogoFX.Client.Bootstrapping.Samples.WPF
-   {    
-      public partial class App
+```csharp
+namespace LogoFX.Client.Bootstrapping.Samples.WPF
+{    
+   public partial class App
+   {
+      public App()
       {
-         public App()
-         {
-             var appBootstrapper = new AppBootstrapper();
-             appBootstrapper.Initialize();
-         }
+         var appBootstrapper = new AppBootstrapper();
+         appBootstrapper.Initialize();
       }
    }
+}
 ```
 
 That's it! Build the solution and run it. You should see something like this:
