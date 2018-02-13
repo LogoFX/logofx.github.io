@@ -31,7 +31,8 @@ using LogoFX.Client.Bootstrapping.Samples.WPF.ViewModels;
 
 namespace LogoFX.Client.Bootstrapping.Samples.WPF
 {
-   public class AppBootstrapper : BootstrapperContainerBase<ExtendedSimpleContainerAdapter>.WithRootObject<ShellViewModel>
+   public class AppBootstrapper : BootstrapperContainerBase<ExtendedSimpleContainerAdapter>
+   .WithRootObject<ShellViewModel>
    {
       public AppBootstrapper()
          :base (new ExtendedSimpleContainerAdapter())
@@ -77,7 +78,10 @@ Delete the code-behind portion of this file and the following markup to the file
         mc:Ignorable="d"
         Height="350" Width="350">
     <Grid>
-        <TextBlock Text="Hello Bootstrapping" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />       
+        <TextBlock Text="Hello Bootstrapping" 
+	           HorizontalAlignment="Center" 
+		   VerticalAlignment="Center" 
+		   FontSize="24" />       
     </Grid>
 </UserControl>
 ```
