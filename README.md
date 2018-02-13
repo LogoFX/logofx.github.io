@@ -114,5 +114,5 @@ namespace LogoFX.Client.Bootstrapping.Samples.WPF
 
 That's it! Build the solution and run it. You should see something like this:
 
-![alt text](https://github.com/LogoFX/logofx.github.io/blob/fb-content-initial/samples-bootstrapping-final-result.png)
+![alt text](./assets/samples-bootstrapping-final-result.png)
 
