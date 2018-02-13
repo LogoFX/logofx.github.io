@@ -45,7 +45,7 @@ namespace LogoFX.Client.Bootstrapping.Samples.WPF
 
 Go ahead and try to compile the code. It won't compile complaining about missing `ShellViewModel`.
 Indeed we haven't added our first view-model to the application (If you're not familiar with MVVM, please
-refer to this [amazing resourse](https://www.codeproject.com/Articles/100175/Model-View-ViewModel-MVVM-Explained))
+refer to this [amazing resource](https://www.codeproject.com/Articles/100175/Model-View-ViewModel-MVVM-Explained))
 
 Let's add the view-model and its view. Create a folder named `ViewModels` 
 at the root level of your application and add a file there named `ShellViewModel.cs`:
