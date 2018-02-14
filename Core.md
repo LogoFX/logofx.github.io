@@ -1,1 +1,0 @@
-# LogoFX.Core package

@@ -1,5 +1,11 @@
+---
+layout: page
+title: Getting started
+subtitle: Start lean
+---
+
 So you decided to create a new application that will look stunning and make life easier
-for the users. Good for you :cool:. We're here to help ;)
+for the users. Good for you. We're here to help ;)
 
 Every great application starts small. 
 In our case we want to show a simple text inside the first view.
@@ -31,7 +37,8 @@ using LogoFX.Client.Bootstrapping.Samples.WPF.ViewModels;
 
 namespace LogoFX.Client.Bootstrapping.Samples.WPF
 {
-   public class AppBootstrapper : BootstrapperContainerBase<ExtendedSimpleContainerAdapter>
+   public class AppBootstrapper : 
+   BootstrapperContainerBase<ExtendedSimpleContainerAdapter>
    .WithRootObject<ShellViewModel>
    {
       public AppBootstrapper()
@@ -45,7 +52,7 @@ namespace LogoFX.Client.Bootstrapping.Samples.WPF
 
 Go ahead and try to compile the code. It won't compile complaining about missing `ShellViewModel`.
 Indeed we haven't added our first view-model to the application (If you're not familiar with MVVM, please
-refer to this [amazing resource](https://www.codeproject.com/Articles/100175/Model-View-ViewModel-MVVM-Explained))
+refer to this [amazing resourse](https://www.codeproject.com/Articles/100175/Model-View-ViewModel-MVVM-Explained))
 
 Let's add the view-model and its view. Create a folder named `ViewModels` 
 at the root level of your application and add a file there named `ShellViewModel.cs`:
@@ -67,7 +74,8 @@ namespace LogoFX.Client.Bootstrapping.Samples.WPF.ViewModels
 ```
 
 The view is still missing so we should add it as well. Create a folder named `Views`
-at the root level of your application and add a file there named `ShellView.xaml` (add it via *Create User Control* option)
+at the root level of your application and add a file there named `ShellView.xaml` 
+(add it via *Create User Control* option)
 Delete the code-behind portion of this file and the following markup to the file itself:
 ```xaml
 <UserControl x:Class="LogoFX.Client.Bootstrapping.Samples.WPF.Views.ShellView"
@@ -110,4 +118,6 @@ namespace LogoFX.Client.Bootstrapping.Samples.WPF
 
 That's it! Build the solution and run it. You should see something like this:
 
-![alt text](./assets/samples-bootstrapping-final-result.png)
+![alt text](../assets/samples-bootstrapping-final-result.png)
+
+
