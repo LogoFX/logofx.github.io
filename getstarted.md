@@ -77,7 +77,7 @@ The view is still missing so we should add it as well. Create a folder named `Vi
 at the root level of your application and add a file there named `ShellView.xaml` 
 (add it via *Create User Control* option)
 Delete the code-behind portion of this file and the following markup to the file itself:
-```xaml
+```xml
 <UserControl x:Class="LogoFX.Client.Bootstrapping.Samples.WPF.Views.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -96,7 +96,7 @@ Delete the code-behind portion of this file and the following markup to the file
 
 The only missing part is the link between the app's entry point and the bootstrapper:
 Delete the `MainWindow.xaml` and modify the `App.xaml` and `App.xaml.cs` files:
-```xaml
+```xml
 <Application x:Class="LogoFX.Client.Bootstrapping.Samples.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
