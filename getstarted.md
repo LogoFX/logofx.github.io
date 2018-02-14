@@ -58,50 +58,51 @@ Let's add the view-model and its view. Create a folder named `ViewModels`
 at the root level of your application and add a file there named `ShellViewModel.cs`:
 
 ```csharp
-using Caliburn.Micro;
-
 namespace LogoFX.Client.Bootstrapping.Samples.WPF.ViewModels
 {
-   public class ShellViewModel : Screen
-   {
-      protected override void OnInitialize()
-      {
-         base.OnInitialize();
-         DisplayName = "Samples.Bootstrapping";
-      }
-   }
+    public class ShellViewModel
+    {
+        public string DisplayName => "Samples.Bootstrapping";
+    }
 }
 ```
 
 The view is still missing so we should add it as well. Create a folder named `Views`
 at the root level of your application and add a file there named `ShellView.xaml` 
-(add it via *Create User Control* option)
+(add it via *Create Window* option)
 Delete the code-behind portion of this file and the following markup to the file itself:
 ```xml
-<UserControl x:Class="LogoFX.Client.Bootstrapping.Samples.WPF.Views.ShellView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Height="350" Width="350">
+<Window 
+x:Class="LogoFX.Client.Bootstrapping.Samples.WPF.Views.ShellView"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+xmlns:viewModels="clr-namespace:LogoFX.Client.Bootstrapping.Samples.WPF.ViewModels"
+mc:Ignorable="d"
+d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
+Title="{Binding DisplayName, Mode=OneTime}"
+Height="350" Width="350">
+
     <Grid>
-        <TextBlock Text="Hello Bootstrapping" 
-	           HorizontalAlignment="Center" 
-		   VerticalAlignment="Center" 
-		   FontSize="24" />       
+        <TextBlock Text="Hello Bootstrapping" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
     </Grid>
-</UserControl>
+
+</Window>
 ```
 
 The only missing part is the link between the app's entry point and the bootstrapper:
 Delete the `MainWindow.xaml` and modify the `App.xaml` and `App.xaml.cs` files:
+
+`App.xaml`
 ```xml
-<Application x:Class="LogoFX.Client.Bootstrapping.Samples.WPF.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+<Application 
+x:Class="LogoFX.Client.Bootstrapping.Samples.WPF.App"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
 ```
    
+`App.xaml.cs`   
 ```csharp
 namespace LogoFX.Client.Bootstrapping.Samples.WPF
 {    
