@@ -1,13 +1,8 @@
 ---
 layout: page
-title: Getting started
-subtitle: Start lean
+title: Bootstrapping
+subtitle: Extend everything
 ---
-
-So you decided to create a new application that will look stunning and make life easier
-for the users. Good for you. We're here to help ;)
-
-You can always download the skeleton from [here](https://github.com/LogoFX/Samples.GetStarted/archive/v1.0.0.zip)
 
 Every great application starts small. 
 In our case we want to show a simple text inside the first view.
@@ -122,5 +117,3 @@ namespace LogoFX.Client.Bootstrapping.Samples.WPF
 That's it! Build the solution and run it. You should see something like this:
 
 ![alt text](../assets/samples-bootstrapping-final-result.png)
-
-
