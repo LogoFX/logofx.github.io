@@ -7,6 +7,8 @@ subtitle: Start lean
 So you decided to create a new application that will look stunning and make life easier
 for the users. Good for you. We're here to help ;)
 
+You can always download the skeleton from [here](https://github.com/LogoFX/Samples.GetStarted/archive/v1.0.0.zip)
+
 Every great application starts small. 
 In our case we want to show a simple text inside the first view.
 This can be done in a few simple steps:
