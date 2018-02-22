@@ -373,7 +373,7 @@ That's it. Let's build the solution and see what we have:
 Pay attention that editing values will enable/disable the correspondent buttons
 like in the most common editing scenarios. All this functionality is ready out of the box!
 
-###Editing item - validation
+### Editing item - validation
 
 The last missing piece would be the validation and error messages. It's pretty common to have client-side
 validation defined by the property metadata. In this case we will use attributes:
