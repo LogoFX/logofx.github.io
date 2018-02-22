@@ -510,6 +510,11 @@ If you try to modify the values you should see the appropriate error message
 and the buttons will be automtically disabled until you fix the value.
 ![alt text](../assets/tutorial-editing-single-item-validation.png)
 
+### Summary
+
+So far we have seen the power and simplicity of `LogoFX` with regard to item editing lifecycle
+and the app bootstrapping. Stay tuned for more ;)
+
 
 
 
