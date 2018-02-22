@@ -79,7 +79,7 @@ such that it's resolved correctly in the runtime. It will be explained later.
 The framework classes contain all property notification boilerplate logic 
 so we can concentrate on implementing the actuall app's needs.  
 
-### Viewing items
+### Editing item
 
 Up to now the app doesn't really do much. So we would like to add some basic functionality and we will
 start with editing an entity. The first part of it should be defined in the **Model** layer.
@@ -161,6 +161,8 @@ internal sealed class DataService : NotifyPropertyChangedBase<DataService>, IDat
 }
 ```
 
+### Editing options
+
 Remember that we want to be able to edit the entity. That's why the `AppModel` inherits from `EditableModel`.
 Moreover we would like to be able to save and cancel the changes as well as undo/redo the whole history stack (time-travel).
 This will require a slight modification in the base model:
@@ -175,6 +177,8 @@ internal abstract class AppModel : EditableModel<Guid>.WithUndoRedo, IAppModel
 ```
 
 Pay attention to the `UndoRedo` inclusion. That's part of the `LogoFX` framework, too!
+
+###Editing item - presentation part
 
 With that in place we're ready to upgrade the `ShellViewModel` and `ShellView` to
 allow editing the entity. The `LogoFX` framework contains a view model for this scenario:
@@ -368,6 +372,8 @@ That's it. Let's build the solution and see what we have:
 
 Pay attention that editing values will enable/disable the correspondent buttons
 like in the most common editing scenarios. All this functionality is ready out of the box!
+
+###Editing item - validation
 
 The last missing piece would be the validation and error messages. It's pretty common to have client-side
 validation defined by the property metadata. In this case we will use attributes:
