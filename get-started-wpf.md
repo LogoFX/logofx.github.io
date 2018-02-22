@@ -178,7 +178,7 @@ internal abstract class AppModel : EditableModel<Guid>.WithUndoRedo, IAppModel
 
 Pay attention to the `UndoRedo` inclusion. That's part of the `LogoFX` framework, too!
 
-###Editing item - presentation part
+### Editing item - presentation part
 
 With that in place we're ready to upgrade the `ShellViewModel` and `ShellView` to
 allow editing the entity. The `LogoFX` framework contains a view model for this scenario:
