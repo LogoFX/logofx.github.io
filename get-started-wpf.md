@@ -85,7 +85,7 @@ Up to now the app doesn't really do much. So we would like to add some basic fun
 start with editing an entity. The first part of it should be defined in the **Model** layer.
  <!--Order: Editing single item; Displaying coll of items async with wrap coll;Create/Delete single item;Undo/Redo;Login and activation;Close guard-->
 
- First of all let's define the contract of the new entity and its basic implementation
+First of all let's define the contract of the new entity and its basic implementation
 
  ```csharp
 public interface IWarehouseItem : IAppModel
@@ -203,6 +203,7 @@ public class ShellViewModel : EditableObjectViewModel<IWarehouseItem>
 
    private ICommand _redoCommand;
    public ICommand RedoCommand => _redoCommand ?? (_redoCommand = ActionCommand.When(() => Model.CanRedo).Do(() => Model.Redo()).RequeryOnPropertyChanged(this, () => Model.CanRedo));
+}
 ```
 
 This requires adding two packages: `LogoFX.Client.Mvvm.Commanding.Core` and `LogoFX.Client.Mvvm.ViewModel.Extensions.Core` to the `Presentation.Shell` project
@@ -223,7 +224,7 @@ partial class App
 
 As you can see the amount of code needed to be added to implement this common scenario is quite small. 
 
-```csharp
+```xml
 <Window x:Class="Samples.GetStarted.Presentation.Shell.Views.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
