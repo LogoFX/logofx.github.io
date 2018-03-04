@@ -443,3 +443,151 @@ That's it. Let's build the solution and see what we have:
 
 Pay attention that editing values will enable/disable the correspondent buttons
 like in the most common editing scenarios. All this functionality is ready out of the box!
+
+### Editing item - validation
+
+The last missing piece would be the validation and error messages. It's pretty common to have client-side
+validation defined by the property metadata. In this case we will use attributes:
+```csharp
+public class DoublePositiveValidation : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        try
+        {
+            var number = (double)value;
+            if (number < 0.0)
+            {
+                return new ValidationResult(ErrorMessage);
+            }
+        }
+        catch (Exception)
+        {
+            return new ValidationResult("Number is invalid");
+        }
+        return ValidationResult.Success;
+    }
+}
+
+public class NumberValidation : ValidationAttribute
+{
+    public NumberValidation()
+    {
+        Minimum = int.MinValue;
+        Maximum = int.MaxValue;
+    }
+
+    public int Minimum { get; set; }
+
+    public int Maximum { get; set; }
+
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        var number = (int)value;
+
+        if (number < Minimum || number > Maximum)
+        {
+            return new ValidationResult(ErrorMessage);
+        }
+
+        return ValidationResult.Success;
+    }
+}
+
+public class StringValidation : ValidationAttribute
+{
+    public StringValidation()
+    {
+        MaxLength = 256;
+    }
+
+    public int MaxLength { get; set; }
+    public bool IsNulOrEmptyAllowed { get; set; }
+    public bool IsAlphaNumeric { get; set; }
+
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        var str = value as string;
+
+        var isValid = IsNulOrEmptyAllowed || !string.IsNullOrEmpty(str);
+        if (!isValid)
+        {
+            return new ValidationResult(string.Format("{0} should not be empty.", validationContext.ObjectInstance));
+        }
+
+        if (str != null)
+        {
+            var length = str.Length;
+            isValid = length <= MaxLength;
+            if (!isValid)
+            {
+                return new ValidationResult(string.Format("Provided string is {0} chars length. Maximal length allowed is {1}.", length, MaxLength));
+            }
+
+            isValid = !IsAlphaNumeric || str.Replace("-", "").All(char.IsLetterOrDigit);
+            if (!isValid)
+            {
+                return new ValidationResult("Only alphanumeric characters or '-' are allowed.");
+            }
+        }
+        return ValidationResult.Success;
+    }
+}
+
+internal sealed class WarehouseItem : AppModel, IWarehouseItem
+{
+    public WarehouseItem(
+            string kind,
+            double price,
+            int quantity)
+    {
+        Id = Guid.NewGuid();
+        _kind = kind;
+        _price = price;
+        _quantity = quantity;
+    }
+
+    private string _kind;  
+    [StringValidation(IsNulOrEmptyAllowed = false, MaxLength = 63)]      
+    public string Kind
+    {
+        get => _kind;
+        set => SetProperty(ref _kind, value);
+    }
+
+    private double _price;  
+    [DoublePositiveValidation(ErrorMessage = "Price must be positive.")]     
+    public double Price
+    {
+        get => _price;
+        set
+        {
+            SetProperty(ref _price, value);
+            NotifyOfPropertyChange(() => TotalCost);
+        }
+    }
+
+    private int _quantity;   
+    [NumberValidation(Minimum = 1, ErrorMessage = "Quantity must be positive.")] 
+    public int Quantity
+    {
+        get => _quantity;
+        set
+        {
+            SetProperty(ref _quantity, value);
+            NotifyOfPropertyChange(() => TotalCost);
+        }
+    }
+
+    public double TotalCost => _quantity * _price;
+}
+```
+
+If you try to modify the values you should see the appropriate error message
+and the buttons will be automatically disabled until you fix the value.
+![alt text](../assets/tutorial-editing-single-item-validation-ios.png)
+
+### Summary
+
+So far we have seen the power and simplicity of `LogoFX` with regard to item editing lifecycle
+and the app bootstrapping. Stay tuned for more ;)

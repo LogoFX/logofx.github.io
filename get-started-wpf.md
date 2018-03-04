@@ -514,7 +514,7 @@ internal sealed class WarehouseItem : AppModel, IWarehouseItem
 ```
 
 If you try to modify the values you should see the appropriate error message
-and the buttons will be automtically disabled until you fix the value.
+and the buttons will be automatically disabled until you fix the value.
 ![alt text](../assets/tutorial-editing-single-item-validation.png)
 
 ### Summary
